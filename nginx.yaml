@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spark-argo
+spec:
+  selector:
+    matchLabels:
+      app: spark
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: spark
+    spec:
+      containers:
+        - name: alex
+          image: nginx
