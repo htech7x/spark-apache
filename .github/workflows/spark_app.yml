@@ -43,4 +43,5 @@ jobs:
         rm argocd-linux-amd64
         argocd login 54.226.25.98:31218 --username admin --password SojWh5-NBGRCy69G --insecure
         argocd app list
+        argocd app sync my-spark-app
         
