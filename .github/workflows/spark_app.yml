@@ -33,4 +33,4 @@ jobs:
       - name: Install nginx
         run: |
           echo Install nginx,
-          apt install nginx -y
+          sudo apt install nginx -y
