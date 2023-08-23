@@ -24,9 +24,9 @@ jobs:
       run: |
         # Install Spark and dependencies here
         # You can use Apache Spark's official Docker image or install it manually
-        docker images
-        docker pull apache/spark
-        docker images
+        ##docker images
+        ##docker pull apache/spark
+        ##docker images
         # Example: Download and install Spark manually
 
     - name: Build and test Spark app
@@ -41,4 +41,6 @@ jobs:
         curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
         sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
         rm argocd-linux-amd64
-        argocd version
+        argocd login 54.226.25.98:31218 --username admin --password SojWh5-NBGRCy69G --insecure
+        argocd app list
+        
