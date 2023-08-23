@@ -15,3 +15,17 @@ spec:
       containers:
         - name: alex
           image: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/instance: apache-spark
+  name: spark-argo
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: spark
