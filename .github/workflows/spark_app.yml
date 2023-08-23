@@ -24,7 +24,9 @@ jobs:
       run: |
         # Install Spark and dependencies here
         # You can use Apache Spark's official Docker image or install it manually
-        # Example: docker pull apache/spark
+        docker images
+        docker pull apache/spark
+        docker images
         # Example: Download and install Spark manually
 
     - name: Build and test Spark app
