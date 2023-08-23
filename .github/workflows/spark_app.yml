@@ -16,9 +16,9 @@ jobs:
     - name: Copy custom code
       run: |
         # Copy code from custom_folder into the source folder
-        cat /code/co
+        cat /src/app.txt
         cp -r custom_folder/* code/
-        cat /code/co
+        cat /src/app.txt
         
     - name: Set up Spark environment
       run: |
