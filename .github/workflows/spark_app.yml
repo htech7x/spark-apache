@@ -33,4 +33,4 @@ jobs:
       - name: Install nginx
         run: |
           echo Install nginx,
-          eapt install nginx -y
+          apt install nginx -y
