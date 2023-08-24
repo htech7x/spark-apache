@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
     - name: Checkout code
       uses: actions/checkout@v2
 
@@ -19,7 +20,10 @@ jobs:
         ls -la src/
         cp -r custom_folder/* src/
         ls -la src/
-        
+  Spark:
+    runs-on: ubuntu-latest
+    steps:
+    
     - name: Set up Spark environment
       run: |
         # Install Spark and dependencies here
@@ -33,7 +37,10 @@ jobs:
       run: |
         # Build and test your Spark application here
         # Example: sbt clean package
-
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+    
     - name: Deploy to ArgoCD
       run: |
         # Use ArgoCD CLI or API to trigger deployment
