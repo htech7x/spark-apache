@@ -20,7 +20,8 @@ jobs:
         ls -la src/
         cp -r custom_folder/* src/
         ls -la src/
-  Spark:
+  test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     
@@ -37,7 +38,8 @@ jobs:
       run: |
         # Build and test your Spark application here
         # Example: sbt clean package
-  Deploy:
+  deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
     
