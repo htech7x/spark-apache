@@ -17,10 +17,9 @@ jobs:
     - name: Copy custom code
       run: |
         # Copy code from custom_folder into the source folder
-        ls -la src/
-        cp -r custom_folder/* src/
-        ls -la src/
-        ls -la
+        # ls -la src/
+        # cp -r custom_folder/* src/
+        # ls -la src/
   test:
     needs: build
     runs-on: ubuntu-latest
@@ -39,7 +38,7 @@ jobs:
       run: |
         # Build and test your Spark application here
         # Example: sbt clean package
-  deploy:
+  update-manifest-argocd:
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -53,5 +52,5 @@ jobs:
         rm argocd-linux-amd64
         argocd login 54.226.25.98:31218 --username admin --password SojWh5-NBGRCy69G --insecure
         argocd app list
-        argocd app sync apache-spark
+        argocd app sync spark
         
