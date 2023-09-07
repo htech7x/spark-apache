@@ -43,14 +43,53 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    - name: Deploy to ArgoCD
+    # - name: Deploy to ArgoCD
+    #   run: |
+    #     # Use ArgoCD CLI or API to trigger deployment
+    #     # Example: argocd app sync my-spark-app
+    #     curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+    #     sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+    #     rm argocd-linux-amd64
+    #     argocd login 54.226.25.98:31218 --username admin --password SojWh5-NBGRCy69G --insecure
+    #     argocd app list
+    #     argocd app sync spark
+
+    - name: changing the deployment of git repo
+      uses: actions/checkout@v3
+      with:
+        repository: 'htech7x/spark-k8s-deploy'
+        token: ${{ secrets.GIT_TOKEN }}
+    
+    - name: setup git config
       run: |
-        # Use ArgoCD CLI or API to trigger deployment
-        # Example: argocd app sync my-spark-app
-        curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
-        sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
-        rm argocd-linux-amd64
-        argocd login 54.226.25.98:31218 --username admin --password SojWh5-NBGRCy69G --insecure
-        argocd app list
-        argocd app sync spark
+        git config --global user.email htech7x@gmail.com
+        git config --global user.name htech7x
+        ls -la
+        cat statefulset-master.yaml
+        cat statefulset-worker.yaml
+      
+        echo "XXXXXXXXXX"
+        echo ${{ github.run_number }}
+        echo "=========="
+          
+        sed -i 's/spark-master-rev.*/spark-master-rev-${{ github.run_number }}/g' statefulset-master.yaml
+        sed -i 's/spark-worker-rev.*/spark-worker-rev-${{ github.run_number }}/g' statefulset-worker.yaml
+        
+        cat statefulset-master.yaml
+        echo "=========="
+        cat statefulset-worker.yaml
+
+        echo "XXXXXXXXXX"
+        git add .
+        git commit -m 'Done  by Github Actions Job change manifest: ${{ github.run_number }}'
+        git push origin main
+
+
+
+
+
+
+
+
+      
         
